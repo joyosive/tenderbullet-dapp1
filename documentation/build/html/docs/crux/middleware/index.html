@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating and running the middleware &#8212; TenderBullet   documentation</title>
+    
+  <link rel="stylesheet" href="../../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/css/lightbox.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/js/jquery-1.11.0.min.js"></script>
+    <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/js/lightbox.min.js"></script>
+    <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Designing an API" href="../apiDesign/index.html" />
+    <link rel="prev" title="Designing a Data and Transaction Model" href="../dataModel/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../../index.html">
+    
+      <p class="title">TenderBullet </p>
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../basis/index.html">The Basis</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../ip/index.html">IP Disclaimer</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../intro/index.html">The Introduction</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../index.html">The Crux</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../aoc/index.html">Application of Concept</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../theEnd/index.html">The End</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../adix/index.html">Appendix</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../adix/journey/index.html">The Trivial Ending</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../adix/teamProfile/index.html">Team Profile</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../adix/links/index.html">Links & References</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../adix/epapers/index.html">Future Readings</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../architecture/index.html">Application model and architecture</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../asset%26txn/index.html">Exposing Network Assets and Transactions</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../devNetwork/index.html">Setting up the development environment</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../dataModel/index.html">Designing a Data and Transaction Model</a>
+                </li>
+            
+          
+            
+                <li class="active">
+                    <a href="">Creating and running the middleware</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../apiDesign/index.html">Designing an API</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../update/index.html">Updating the network</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../monitoring/index.html">System monitoring and performance</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../governance/index.html">Governance</a>
+                </li>
+            
+          
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="creating-and-running-the-middleware">
+<h1>Creating and running the middleware<a class="headerlink" href="#creating-and-running-the-middleware" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="../dataModel/index.html" title="previous page">Designing a Data and Transaction Model</a>
+    <a class='right-next' id="next-link" href="../apiDesign/index.html" title="next page">Designing an API</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2021, TenderBullet.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.0+.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
